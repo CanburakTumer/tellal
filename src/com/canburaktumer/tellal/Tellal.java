@@ -1,6 +1,7 @@
 package com.canburaktumer.tellal;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 
 public class Tellal extends AsyncTask<TellalConfig, String, String>{
@@ -15,8 +16,11 @@ public class Tellal extends AsyncTask<TellalConfig, String, String>{
 	protected String doInBackground(TellalConfig... params) {
 		// TODO Auto-generated method stub
 		TellalConfig config = params[0];
+		Log.i("Tellal", "got params");
 		TellalReader reader = new TellalReader();
+		Log.i("Tellal", "reader created");
 		TellalAlert.showAlert(context, reader.getJSONFromUrl(config.getSourceURL()));
+		Log.i("Tellal", "alert dialog shown!");
 		
 		return null;
 	}

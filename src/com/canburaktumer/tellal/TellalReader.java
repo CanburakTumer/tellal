@@ -51,6 +51,7 @@ public class TellalReader {
             }
             is.close();
             json = sb.toString();
+            Log.i("TellalReader", " "+json);
         } catch (Exception e) {
             Log.e("TellalReader", "Error converting result " + e.toString());
         }

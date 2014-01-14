@@ -16,12 +16,13 @@ public class TellalAlert {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		Log.i("TellalAlert", "Created builder");
 		builder.setTitle(json.getString("title"))
-			.setMessage(json.getString("message"));
-//			.setPositiveButton(json.getString("buttonText"), new DialogInterface.OnClickListener() {
-//				public void onClick(DialogInterface dialog,int id) {
-//					dialog.cancel();
-//				}
-//			  });
+			.setMessage(json.getString("message"))
+			.setCancelable(false)
+			.setPositiveButton(json.getString("buttonText"), new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					dialog.cancel();
+				}
+			  });
 		Log.i("TellalAlert", "created alertDialog");
 		AlertDialog alertDialog = builder.create();
 		alertDialog.show();

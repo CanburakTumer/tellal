@@ -1,4 +1,6 @@
 package com.canburaktumer.tellal;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -7,6 +9,9 @@ import android.util.Log;
 public class Tellal extends AsyncTask<TellalConfig, String, String>{
 	
 	Context context;
+	TellalReader reader;
+	TellalConfig config;
+	JSONObject json;
 	
 	public Tellal(Context cntxt){
 		context = cntxt;
@@ -15,12 +20,12 @@ public class Tellal extends AsyncTask<TellalConfig, String, String>{
 	@Override
 	protected String doInBackground(TellalConfig... params) {
 		// TODO Auto-generated method stub
-		TellalConfig config = params[0];
+		config = params[0];
 		Log.i("Tellal", "got params");
-		TellalReader reader = new TellalReader();
+		reader = new TellalReader();
+		json = reader.getJSONFromUrl(config.getSourceURL());
 		Log.i("Tellal", "reader created");
-		TellalAlert.showAlert(context, reader.getJSONFromUrl(config.getSourceURL()));
-		Log.i("Tellal", "alert dialog shown!");
+		
 		
 		return null;
 	}
@@ -28,6 +33,8 @@ public class Tellal extends AsyncTask<TellalConfig, String, String>{
 	@Override
 	protected void onPostExecute(String result) {
 		// TODO Auto-generated method stub
+		TellalAlert.showAlert(context, json);
+		Log.i("Tellal", "alert dialog shown!");
 		super.onPostExecute(result);
 	}
 

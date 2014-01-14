@@ -28,6 +28,7 @@ public class TellalReader {
             // defaultHttpClient
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(url);
+            Log.i("TellalReader"," "+url);
  
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
@@ -45,9 +46,10 @@ public class TellalReader {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"), 8);
             StringBuilder sb = new StringBuilder();
             String line = null;
-            reader.readLine();
+            //reader.readLine();
             while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
+                Log.i("TellalReader", "Inside while : " + line);
             }
             is.close();
             json = sb.toString();

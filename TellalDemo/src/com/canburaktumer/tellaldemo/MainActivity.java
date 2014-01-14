@@ -5,6 +5,7 @@ import com.canburaktumer.tellal.TellalConfig;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
@@ -20,7 +21,8 @@ public class MainActivity extends Activity {
 	public void init(){
 		TellalConfig demoConfig = new TellalConfig();
 		demoConfig.setSourceURL("https://dl.dropboxusercontent.com/u/868500/tellaldemo.txt");
-		Tellal demo = new Tellal(this);
+		Context cnt = (Context)this;
+		Tellal demo = new Tellal(cnt);
 		demo.execute(demoConfig);
 	}
 }

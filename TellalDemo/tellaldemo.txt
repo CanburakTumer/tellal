@@ -1,5 +1,1 @@
-{
-  "title" : "Demo Title",
-  "message" : "Demo message...",
-  "buttonText" : "OK"
-}
+{"title":"Demo Title","message":"Demo message...","buttonText" : "OK"}

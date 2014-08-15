@@ -32,7 +32,11 @@ public class TellalReader {
  
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
-            is = httpEntity.getContent();          
+            is = httpEntity.getContent();
+            int code = httpResponse.getStatusLine().getStatusCode();
+            if(code==404){
+            	return null;
+            }
  
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

@@ -27,15 +27,25 @@ public class Tellal extends AsyncTask<TellalConfig, String, String>{
 		Log.i("Tellal", "reader created");
 		
 		
-		return null;
+		return config.getType();
 	}
 
 	@Override
 	protected void onPostExecute(String result) {
 		// TODO Auto-generated method stub
-		TellalAlert.showAlert(context, json);
-		Log.i("Tellal", "alert dialog shown!");
-		super.onPostExecute(result);
+		if(result.equalsIgnoreCase("a")){
+			if(json!=null){
+				TellalAlert.showAlert(context, json);
+				Log.i("Tellal", "alert dialog shown!");
+				super.onPostExecute(result);
+			}
+		}else if(result.equalsIgnoreCase("n")){
+			if(json!=null){
+				TellalAlert.showNotification(context, json);
+				Log.i("Tellal", "alert notification shown!");
+				super.onPostExecute(result);
+			}
+		}
 	}
 
 	@Override
